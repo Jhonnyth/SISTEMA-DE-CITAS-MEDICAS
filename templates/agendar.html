@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block title %}Nueva Cita · VetCitas{% endblock %}
+
+{% block content %}
+
+<style>
+  .card-glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .title-gradient {
+    background: linear-gradient(90deg, #7c3aed, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .input-custom {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+  }
+
+  .input-custom:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 0.2rem rgba(124,58,237,0.2);
+  }
+
+  .input-icon {
+    background: #7c3aed;
+    color: white;
+    border: none;
+  }
+
+  .btn-violet {
+    background: #7c3aed;
+    color: white;
+    border: none;
+  }
+
+  .btn-violet:hover {
+    background: #6d28d9;
+  }
+
+  .btn-soft {
+    border: 1px solid #ddd;
+  }
+
+  .btn-soft:hover {
+    background: #f3f4f6;
+  }
+</style>
+
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6">
+
+    <div class="card-glass p-4 shadow-sm">
+
+      <!-- Title -->
+      <h4 class="fw-bold mb-4 title-gradient">
+        <i class="bi bi-calendar-plus me-2"></i>
+        Nueva Cita
+      </h4>
+
+      <form method="POST" action="{{ url_for('agendar') }}">
+
+        <!-- Mascota -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Mascota</label>
+          <div class="input-group">
+            <span class="input-group-text input-icon">
+              <i class="bi bi-heart-fill"></i>
+            </span>
+            <input type="text" name="mascota"
+                   class="form-control input-custom"
+                   placeholder="Ej. Firulais" required>
+          </div>
+        </div>
+
+        <!-- Propietario -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Propietario</label>
+          <div class="input-group">
+            <span class="input-group-text input-icon">
+              <i class="bi bi-person-fill"></i>
+            </span>
+            <input type="text" name="propietario"
+                   class="form-control input-custom"
+                   placeholder="Nombre del dueño" required>
+          </div>
+        </div>
+
+        <!-- Especie -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Especie</label>
+          <select name="especie" class="form-select input-custom">
+            <option value="Perro">🐶 Perro</option>
+            <option value="Gato">🐱 Gato</option>
+            <option value="Ave">🐦 Ave</option>
+            <option value="Conejo">🐰 Conejo</option>
+            <option value="Otro">🐾 Otro</option>
+          </select>
+        </div>
+
+        <!-- Fecha -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">Fecha</label>
+          <div class="input-group">
+            <span class="input-group-text input-icon">
+              <i class="bi bi-calendar-event"></i>
+            </span>
+            <input type="date" name="fecha"
+                   class="form-control input-custom" required>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex gap-3">
+          <button type="submit" class="btn btn-violet flex-fill fw-semibold">
+            <i class="bi bi-check-circle me-1"></i>Guardar
+          </button>
+
+          <a href="{{ url_for('agenda') }}"
+             class="btn btn-soft flex-fill text-center fw-semibold">
+            <i class="bi bi-arrow-left me-1"></i>Volver
+          </a>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
